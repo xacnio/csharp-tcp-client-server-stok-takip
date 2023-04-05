@@ -1,8 +1,8 @@
 package endpoints
 
 import (
-	"daginik-sistemler/server/database"
-	"daginik-sistemler/server/models"
+	"dagitik-sistemler/server/database"
+	"dagitik-sistemler/server/models"
 	"errors"
 	"gorm.io/gorm"
 	"strconv"

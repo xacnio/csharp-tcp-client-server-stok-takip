@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"daginik-sistemler/server/endpoints"
+	"dagitik-sistemler/server/endpoints"
 	"fmt"
 	"net"
 	"regexp"

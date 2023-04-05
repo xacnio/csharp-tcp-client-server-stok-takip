@@ -1,8 +1,8 @@
 package main
 
 import (
-	"daginik-sistemler/server/database"
-	"daginik-sistemler/server/utils"
+	"dagitik-sistemler/server/database"
+	"dagitik-sistemler/server/utils"
 )
 
 // TCP socket dinlemeyi başlat ve client bağlantıları bekle

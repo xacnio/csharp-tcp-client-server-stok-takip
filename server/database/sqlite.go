@@ -1,7 +1,7 @@
 package database
 
 import (
-	"daginik-sistemler/server/models"
+	"dagitik-sistemler/server/models"
 	"github.com/glebarez/sqlite"
 	"gorm.io/gorm"
 )

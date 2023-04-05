@@ -1,4 +1,4 @@
-module daginik-sistemler/server
+module dagitik-sistemler/server
 
 go 1.19
 

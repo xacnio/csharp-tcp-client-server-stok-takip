@@ -2,7 +2,7 @@ package main
 
 import (
 	"dagitik-sistemler/server/database"
-	"dagitik-sistemler/server/utils"
+	"dagitik-sistemler/server/socket"
 )
 
 // TCP socket dinlemeyi başlat ve client bağlantıları bekle
@@ -12,5 +12,5 @@ func main() {
 		panic(err)
 	}
 
-	utils.Listen()
+	socket.Listen()
 }

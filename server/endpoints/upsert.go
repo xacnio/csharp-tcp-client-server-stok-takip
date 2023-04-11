@@ -9,15 +9,19 @@ import (
 )
 
 func Upsert(args ...string) string {
-	if len(args) < 4 {
+	if len(args) < 5 {
 		return ""
 	}
-	name := args[1]
-	price, e := strconv.ParseFloat(args[2], 64)
+	id, e := strconv.Atoi(args[1])
 	if e != nil {
 		return e.Error()
 	}
-	sayi, e := strconv.Atoi(args[3])
+	name := args[2]
+	price, e := strconv.ParseFloat(args[3], 64)
+	if e != nil {
+		return e.Error()
+	}
+	sayi, e := strconv.Atoi(args[4])
 	if e != nil {
 		return e.Error()
 	}
@@ -29,7 +33,7 @@ func Upsert(args ...string) string {
 
 	// Check if the item exists
 	stok := models.Stok{}
-	e = db.Model(models.Stok{}).Where("isim = ?", name).First(&stok).Error
+	e = db.Model(models.Stok{}).Where("id = ?", id).First(&stok).Error
 	if e != nil {
 		if errors.Is(e, gorm.ErrRecordNotFound) {
 			stok := models.Stok{

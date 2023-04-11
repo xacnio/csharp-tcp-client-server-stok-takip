@@ -3,7 +3,9 @@ package endpoints
 import (
 	"dagitik-sistemler/server/database"
 	"dagitik-sistemler/server/models"
+	"dagitik-sistemler/server/utils"
 	"strconv"
+	"strings"
 )
 
 func Search(args ...string) string {
@@ -26,11 +28,12 @@ func Search(args ...string) string {
 	}
 
 	stoklar := models.Stoklar{}
-
 	totalCount := int64(0)
-	db.Model(models.Stok{}).Where("isim LIKE ?", "%"+search+"%").Select("COUNT(*)").Count(&totalCount)
+	isimColumn := "replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(lower(isim), 'Ç', 'c'), 'Ğ', 'g'), 'Ş', 's'), 'ç','c'), 'ğ','g'), 'İ','i'),'ş','s'),'Ö','o'),'ö','o'),'Ü','u'),'ü','u'),'ı','i')"
+	search = utils.TurkishToEnglish(strings.ToLower(search))
+	db.Model(models.Stok{}).Where(isimColumn+" LIKE ?", "%"+search+"%").Select("COUNT(*)").Count(&totalCount)
 
-	e := db.Model(models.Stok{}).Where("isim LIKE ?", "%"+search+"%").Offset(offset).Limit(limit).Order("id DESC").Find(&stoklar.Items).Error
+	e := db.Model(models.Stok{}).Where(isimColumn+" LIKE ?", "%"+search+"%").Offset(offset).Limit(limit).Order("id DESC").Find(&stoklar.Items).Error
 	if e != nil {
 		return e.Error()
 	}

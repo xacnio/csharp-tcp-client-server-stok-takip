@@ -2,8 +2,10 @@ package database
 
 import (
 	"dagitik-sistemler/server/models"
+	"fmt"
 	"github.com/glebarez/sqlite"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 const (
@@ -11,7 +13,9 @@ const (
 )
 
 func SQLiteConnection() (*gorm.DB, error) {
-	db, err := gorm.Open(sqlite.Open(CON_DB_FILE), &gorm.Config{})
+	db, err := gorm.Open(sqlite.Open(CON_DB_FILE), &gorm.Config{
+		Logger: logger.Default.LogMode(logger.Silent),
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -24,6 +28,7 @@ func SQLiteMigrate(db *gorm.DB) {
 	db.AutoMigrate(&models.Stok{})
 
 	if !ifExistStok {
+		fmt.Println("Stok tablosu oluşturuldu. Veriler ekleniyor...")
 		db.AutoMigrate(&models.Stok{})
 		stoks := models.GenerateRandomStok(2000)
 		for _, stok := range stoks.Items {

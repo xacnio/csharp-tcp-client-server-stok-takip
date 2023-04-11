@@ -1,10 +1,11 @@
-package utils
+package socket
 
 import (
 	"dagitik-sistemler/server/endpoints"
 	"fmt"
 	"net"
 	"regexp"
+	"time"
 )
 
 // Ayarlar
@@ -24,6 +25,7 @@ func processRequest(conn net.Conn) {
 			conn.Close()
 			return
 		}
+		start := time.Now()
 		go func() {
 			req := string(buf[:reqLen])
 
@@ -35,7 +37,7 @@ func processRequest(conn net.Conn) {
 				{`^search:([0-9]*):(.+)$`, endpoints.Search},
 				{`^list:([0-9]*)$`, endpoints.List},
 				{`^delete:([0-9]+)$`, endpoints.Delete},
-				{`^upsert:(.+):([0-9.]+):([0-9]+)$`, endpoints.Upsert},
+				{`^upsert:([0-9]+):(.+):([0-9.]+):([0-9]+)$`, endpoints.Upsert},
 			}
 
 			for _, command := range commands {
@@ -43,6 +45,8 @@ func processRequest(conn net.Conn) {
 				if len(matches) > 0 {
 					result := command.Func(matches...)
 					conn.Write([]byte(result))
+					elapsed := time.Since(start)
+					fmt.Println(conn.RemoteAddr().String()+" -> "+conn.LocalAddr().String()+":", req, ":", elapsed)
 					return
 				}
 			}

@@ -18,7 +18,14 @@ func Search(args ...string) string {
 		page = 1
 	}
 	search := args[2]
-
+	search = strings.TrimSpace(search)
+	words := strings.Split(search, " ")
+	if len(words) == 0 {
+		return "Arama sorgusu en az 1 kelime içermelidir"
+	}
+	if len(words) > 2 {
+		return "Arama sorgusu en fazla 2 kelime içerebilir"
+	}
 	offset := (page - 1) * MAX_PAGE_SIZE
 	limit := MAX_PAGE_SIZE
 
@@ -31,9 +38,18 @@ func Search(args ...string) string {
 	totalCount := int64(0)
 	isimColumn := "replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(replace(lower(isim), 'Ç', 'c'), 'Ğ', 'g'), 'Ş', 's'), 'ç','c'), 'ğ','g'), 'İ','i'),'ş','s'),'Ö','o'),'ö','o'),'Ü','u'),'ü','u'),'ı','i')"
 	search = utils.TurkishToEnglish(strings.ToLower(search))
-	db.Model(models.Stok{}).Where(isimColumn+" LIKE ?", "%"+search+"%").Select("COUNT(*)").Count(&totalCount)
+	if len(words) == 1 {
+		db.Model(models.Stok{}).Where(isimColumn+" LIKE ? OR ", "%"+search+"%").Select("COUNT(*)").Count(&totalCount)
+	} else {
+		db.Model(models.Stok{}).Where(isimColumn+" LIKE ? OR "+isimColumn+" LIKE ?", "%"+words[0]+"%", "%"+words[1]+"%").Select("COUNT(*)").Count(&totalCount)
+	}
 
-	e := db.Model(models.Stok{}).Where(isimColumn+" LIKE ?", "%"+search+"%").Offset(offset).Limit(limit).Order("id DESC").Find(&stoklar.Items).Error
+	e := error(nil)
+	if len(words) == 1 {
+		e = db.Model(models.Stok{}).Where(isimColumn+" LIKE ?", "%"+search+"%").Offset(offset).Limit(limit).Order("id DESC").Find(&stoklar.Items).Error
+	} else {
+		e = db.Model(models.Stok{}).Where(isimColumn+" LIKE ? OR "+isimColumn+" LIKE ?", "%"+words[0]+"%", "%"+words[1]+"%").Offset(offset).Limit(limit).Order("id DESC").Find(&stoklar.Items).Error
+	}
 	if e != nil {
 		return e.Error()
 	}

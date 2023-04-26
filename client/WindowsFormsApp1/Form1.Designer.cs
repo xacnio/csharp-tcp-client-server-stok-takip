@@ -30,14 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.silToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tümünüSilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,6 +55,11 @@
             this.button3 = new System.Windows.Forms.Button();
             this.saveMessage = new System.Windows.Forms.Label();
             this.newProduct = new System.Windows.Forms.Button();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PromosyonFiyat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -84,59 +86,22 @@
             this.ID,
             this.PName,
             this.Price,
+            this.PromosyonFiyat,
             this.PCount});
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.Location = new System.Drawing.Point(252, 51);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(566, 524);
+            this.dataGridView1.Size = new System.Drawing.Size(666, 524);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             this.dataGridView1.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridView1_UserDeletedRow);
             this.dataGridView1.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
             this.dataGridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDown);
-            // 
-            // ID
-            // 
-            dataGridViewCellStyle2.Format = "#";
-            dataGridViewCellStyle2.NullValue = null;
-            this.ID.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ID.HeaderText = "ID";
-            this.ID.MinimumWidth = 10;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ID.Width = 75;
-            // 
-            // PName
-            // 
-            this.PName.HeaderText = "Adı";
-            this.PName.MinimumWidth = 50;
-            this.PName.Name = "PName";
-            this.PName.ReadOnly = true;
-            this.PName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.PName.Width = 250;
-            // 
-            // Price
-            // 
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Price.HeaderText = "Fiyat";
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            this.Price.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // PCount
-            // 
-            this.PCount.HeaderText = "Stok";
-            this.PCount.Name = "PCount";
-            this.PCount.ReadOnly = true;
-            this.PCount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // contextMenuStrip1
             // 
@@ -165,7 +130,7 @@
             this.nextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.nextButton.Enabled = false;
             this.nextButton.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.nextButton.Location = new System.Drawing.Point(743, 591);
+            this.nextButton.Location = new System.Drawing.Point(843, 591);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(75, 23);
             this.nextButton.TabIndex = 1;
@@ -178,7 +143,7 @@
             this.backButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.backButton.Enabled = false;
             this.backButton.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.backButton.Location = new System.Drawing.Point(598, 591);
+            this.backButton.Location = new System.Drawing.Point(698, 591);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(75, 23);
             this.backButton.TabIndex = 2;
@@ -190,7 +155,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(679, 590);
+            this.label1.Location = new System.Drawing.Point(779, 590);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 23);
             this.label1.TabIndex = 3;
@@ -205,7 +170,7 @@
             this.textBox1.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.textBox1.Location = new System.Drawing.Point(329, 12);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(489, 23);
+            this.textBox1.Size = new System.Drawing.Size(589, 23);
             this.textBox1.TabIndex = 4;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -299,7 +264,7 @@
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label6.Location = new System.Drawing.Point(252, 590);
+            this.label6.Location = new System.Drawing.Point(352, 590);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(340, 23);
             this.label6.TabIndex = 14;
@@ -352,12 +317,59 @@
             this.newProduct.UseVisualStyleBackColor = true;
             this.newProduct.Click += new System.EventHandler(this.button4_Click);
             // 
+            // ID
+            // 
+            dataGridViewCellStyle5.Format = "#";
+            dataGridViewCellStyle5.NullValue = null;
+            this.ID.DefaultCellStyle = dataGridViewCellStyle5;
+            this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 10;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ID.Width = 75;
+            // 
+            // PName
+            // 
+            this.PName.HeaderText = "Adı";
+            this.PName.MinimumWidth = 50;
+            this.PName.Name = "PName";
+            this.PName.ReadOnly = true;
+            this.PName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.PName.Width = 250;
+            // 
+            // Price
+            // 
+            dataGridViewCellStyle11.Format = "C2";
+            dataGridViewCellStyle11.NullValue = null;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle11;
+            this.Price.HeaderText = "Fiyat";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            this.Price.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // PromosyonFiyat
+            // 
+            dataGridViewCellStyle12.Format = "C2";
+            this.PromosyonFiyat.DefaultCellStyle = dataGridViewCellStyle12;
+            this.PromosyonFiyat.HeaderText = "Promosyon Fiyat";
+            this.PromosyonFiyat.Name = "PromosyonFiyat";
+            this.PromosyonFiyat.ReadOnly = true;
+            this.PromosyonFiyat.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // PCount
+            // 
+            this.PCount.HeaderText = "Stok";
+            this.PCount.Name = "PCount";
+            this.PCount.ReadOnly = true;
+            this.PCount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(836, 624);
+            this.ClientSize = new System.Drawing.Size(936, 624);
             this.Controls.Add(this.newProduct);
             this.Controls.Add(this.saveMessage);
             this.Controls.Add(this.button3);
@@ -378,7 +390,7 @@
             this.Controls.Add(this.dataGridView1);
             this.MinimumSize = new System.Drawing.Size(852, 663);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Mağaza/Stok Takip";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -405,16 +417,17 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem silToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tümünüSilToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PCount;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label saveMessage;
         private System.Windows.Forms.Button newProduct;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PromosyonFiyat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PCount;
     }
 }
 

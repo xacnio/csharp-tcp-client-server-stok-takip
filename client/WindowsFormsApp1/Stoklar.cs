@@ -20,6 +20,9 @@ namespace WindowsFormsApp1
         [DataMember]
         public float fiyat { get; private set; }
         [DataMember]
+
+        public float promosyonlu_fiyat { get; private set; }
+        [DataMember]
         public float sayi { get; private set; }
     }
 

@@ -27,6 +27,8 @@ namespace WindowsFormsApp1
         private int currentPage = 1;
         private int maxPage = 0;
 
+        private int currentEditId = 0;
+
         private void Form1_Load(object sender, EventArgs e)
         {
             GetList(1);
@@ -67,7 +69,7 @@ namespace WindowsFormsApp1
 
             foreach (Stok var in stoklar.items)
             {
-                object[] row = new object[] { var.id, var.isim, var.fiyat, var.sayi };
+                object[] row = new object[] { var.id, var.isim, var.fiyat, var.promosyonlu_fiyat, var.sayi };
                 dataGridView1.Rows.Add(row);
             }
 
@@ -138,11 +140,13 @@ namespace WindowsFormsApp1
                 productName.Text = "";
                 productPrice.Text = "";
                 productCount.Text = "";
+                currentEditId = 0;
                 return;
             }
             productName.Text = r.Cells[1].Value.ToString();
             productPrice.Text = r.Cells[2].Value.ToString();
-            productCount.Text = r.Cells[3].Value.ToString();
+            productCount.Text = r.Cells[4].Value.ToString();
+            currentEditId = (int)r.Cells[0].Value;
         }
 
         private void silToolStripMenuItem_Click(object sender, EventArgs e)
@@ -241,20 +245,26 @@ namespace WindowsFormsApp1
             string name = productName.Text;
             string count = productCount.Text;
 
-            string sendData = String.Format("upsert:{0}:{1}:{2}", name, price, count);
+            string sendData = String.Format("upsert:{0}:{1}:{2}:{3}", currentEditId.ToString(), name, price, count);
             string data = CSocket.Send(sendData);
             if (data == "OK")
             {
                 saveMessage.Text = "Kaydedildi!";
                 saveMessage.Visible = true;
                 int r = dataGridView1.Rows.GetFirstRow(DataGridViewElementStates.Selected);
-                if (r != -1 && dataGridView1.Rows[r].Cells[1].Value.Equals(name))
+                if (r != -1 && dataGridView1.Rows[r].Cells[0].Value.Equals(currentEditId))
                 {
-                    dataGridView1.Rows[r].Cells[2].Value = parsedPrice;
-                    dataGridView1.Rows[r].Cells[3].Value = int.Parse(count);
+                    GetList(currentPage);
+                    dataGridView1.Rows[0].Selected = false;
+                    dataGridView1.Rows[r].Selected = true;
+                    productName.Text = dataGridView1.Rows[r].Cells[1].Value.ToString();
+                    productPrice.Text = dataGridView1.Rows[r].Cells[2].Value.ToString();
+                    productCount.Text = dataGridView1.Rows[r].Cells[4].Value.ToString();
+                    currentEditId = (int)dataGridView1.Rows[r].Cells[0].Value;
                 }
                 else
                 {
+                    currentEditId = 0;
                     currentPage = 1;
                     GetList(currentPage);
                 }
@@ -299,6 +309,7 @@ namespace WindowsFormsApp1
             productName.Text = "";
             productCount.Text = "0";
             productPrice.Text = "0";
+            currentEditId = 0;
         }
 
         private void productPrice_KeyDown(object sender, KeyEventArgs e)
